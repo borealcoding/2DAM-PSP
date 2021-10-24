@@ -1,11 +1,7 @@
 package es.florida.ae2;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
 public class Lanzador {
 	// lanzador de comandos
@@ -32,7 +28,7 @@ public class Lanzador {
 			System.out.println(
 				"\nNombre asteroide: "+nombre+
 				"\nPosicion NEO: "+posicionNEO+
-				"\nVelocidad NEO: "+velocidadNEO
+				"\nVelocidad NEO: "+velocidadNEO+" km/s"
 			);
 
 			ProcessBuilder builder = new ProcessBuilder(command);
@@ -50,21 +46,26 @@ public class Lanzador {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		long inicio = System.currentTimeMillis();
-		String strFichero = args[0];
-		int numProceso = 0;
-		int numCores = 0;
-		File ficheroNEO = new File(strFichero);
+		String strFicheroLectura = args[0]; // strFicheroEscritura = args[1];
+		int numProceso = 0, numCores = 0;
+		File ficheroNEO = new File(strFicheroLectura); //ficheroResultados = new File(strFicheroEscritura);
 		Lanzador l = new Lanzador();
 	
 		try {
 			FileReader fr = new FileReader(ficheroNEO);
 			BufferedReader br = new BufferedReader(fr);
-			String linea = br.readLine();
-			String nombre = "";
+			//FileWriter fw = new FileWriter(ficheroResultados);
+			//BufferedWriter bw = new BufferedWriter(fw);
+			String linea = br.readLine(), nombre = "";
 			double posicionNEO = 0, velocidadNEO = 0;
+			int cores = Runtime.getRuntime().availableProcessors(), contador = 0;
 			
-			while(linea != null) {
-				//System.out.println(linea);
+			// se crea el fichero de escritura sino existe
+			/*if(!ficheroResultados.exists()) {
+				ficheroResultados.createNewFile();
+			} // end-if*/
+			
+			while(contador < cores) {
 				String [] neos = linea.split(",");
 				nombre = neos[0];
 				posicionNEO = Double.parseDouble(neos[1]);
@@ -72,16 +73,16 @@ public class Lanzador {
 				linea = br.readLine();
 				
 				l.lanzarProceso(nombre, posicionNEO, velocidadNEO);
-			}
-			
+				contador++;
+				
+			} // end-while
+
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} // end-try-catch
 		long fin = System.currentTimeMillis();
-		
 		double tiempo = (double) ((fin - inicio)/1000);
-		System.out.println("\nTiempo MEDIO de ejecucion del proceso: "+(tiempo/12)+" segundos");
-        System.out.println("\nTiempo TOTAL de ejecucion del proceso: "+tiempo+" segundos");
+		System.out.println("\nTiempo MEDIO de ejecucion del proceso: "+String.format("%.2f", (tiempo/12))+" segundos");
+        System.out.println("Tiempo TOTAL de ejecucion del proceso: "+String.format("%.2f", tiempo)+" segundos");
 	}
 }
