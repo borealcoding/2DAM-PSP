@@ -25,14 +25,6 @@ public class Calculos {
 		calcularProbabilidad(args[0],Double.parseDouble(args[1]),Double.parseDouble(args[2]));
 		double resultado = Calculos.resultado;
 		
-		if(resultado > 10) {
-			System.err.println("\nProbabilidades de colision de "+args[0]+": "+(String.format("%.2f", resultado))+" %");
-			System.err.println("ALERTA MUNDIAL! Las probabilidades de colision son altas.");
-		} else {
-			System.out.println("\nProbabilidades de colision de "+args[0]+": "+(String.format("%.2f", resultado))+" %");
-			System.out.println("Pocas probabilidades de colision.");
-		} // end if-else
-		
 		File fichero = new File("registroNEO_"+args[0]+".txt");
 		try {
 			// crea el fichero si no existe
@@ -47,6 +39,18 @@ public class Calculos {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} // end-try-catch
+		
+		if(resultado > 10) {
+			System.err.println(
+					"\nProbabilidades de colision de "+args[0]+": "+(String.format("%.2f", resultado))+" %"+
+					"\nALERTA MUNDIAL! Las probabilidades de colision son altas."
+				);
+		} else {
+			System.out.println(
+					"\nProbabilidades de colision de "+args[0]+": "+(String.format("%.2f", resultado))+" %"+
+					"\nPocas probabilidades de colision."
+				);
+		} // end if-else
 		
 	} // end-main
 } // end-class

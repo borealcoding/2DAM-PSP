@@ -72,19 +72,23 @@ public class Lanzador {
 			BufferedReader br = new BufferedReader(fr);
 			String linea = br.readLine(), nombre = "";
 			double posicionNEO = 0, velocidadNEO = 0;
-			int numCores = Runtime.getRuntime().availableProcessors(), numProceso = 1;
+			int numCores = Runtime.getRuntime().availableProcessors(), numProceso = 1, numBloque = 1;
 			
-			while(numProceso <= numCores) {				
-				String [] neos = linea.split(",");
-				nombre = neos[0];
-				posicionNEO = Double.parseDouble(neos[1]);
-				velocidadNEO = Double.parseDouble(neos[2]);
-				linea = br.readLine();
-				
-				l.lanzarProceso(nombre, posicionNEO, velocidadNEO, numProceso, numCores);
-				numProceso++;
+			while(linea != null) {
+				System.out.println("\n --- Bloque num: "+numBloque);
+				// cada ejecucion del siguiente bucle for, correspondra a un bloque de informacion con tantas lineas como cores haya disponibles
+				for(numProceso = 1; numProceso <= numCores; numProceso++) {
+					// al existir 4 cores, se leeran 4 lineas del documento, mostrandose el calculo correspondiente a cada uno de ellos
+					String [] neos = linea.split(",");
+					nombre = neos[0];
+					posicionNEO = Double.parseDouble(neos[1]);
+					velocidadNEO = Double.parseDouble(neos[2]);
+					linea = br.readLine();
+					
+					l.lanzarProceso(nombre, posicionNEO, velocidadNEO, numProceso, numCores);
+				} // end-for
+				numBloque++;
 			} // end-while
-			
 			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -92,7 +96,10 @@ public class Lanzador {
 		
 		long fin = System.currentTimeMillis();
 		double tiempo = (double) ((fin - inicio)/1000);
-		System.out.println("\nTiempo MEDIO de ejecucion del proceso: "+String.format("%.2f", (tiempo/12))+" segundos");
-        System.out.println("Tiempo TOTAL de ejecucion del proceso: "+String.format("%.2f", tiempo)+" segundos");
+		System.out.println(
+				"\n--------------"+
+				"\nTiempo MEDIO de ejecucion del proceso: "+String.format("%.2f", (tiempo/12))+" segundos"+
+				"\nTiempo TOTAL de ejecucion del proceso: "+String.format("%.2f", tiempo)+" segundos"
+			);
 	} // end-main
 } // end-class
