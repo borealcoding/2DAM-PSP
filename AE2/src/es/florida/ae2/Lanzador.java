@@ -74,11 +74,29 @@ public class Lanzador {
 			double posicionNEO = 0, velocidadNEO = 0;
 			int numCores = Runtime.getRuntime().availableProcessors(), numProceso = 1, numBloque = 1;
 			
-			while(linea != null) {
+			/*
+			 * El siguiente bucle for ejecuta la lectura de tantos procesos como cores haya disponibles 
+			 * Por consiguiente, se creara un documento de registro de cada NEO leido, con sus probabilidades 			de colision.
+			 * Al existir solo 4 cores en nuestro equipo, se generaran 4 documentos de registro 
+			*/
+			for(numProceso = 1; numProceso <= numCores; numProceso++) {
+				String [] neos = linea.split(",");
+				nombre = neos[0];
+				posicionNEO = Double.parseDouble(neos[1]);
+				velocidadNEO = Double.parseDouble(neos[2]);
+				linea = br.readLine();
+				
+				l.lanzarProceso(nombre, posicionNEO, velocidadNEO, numProceso, numCores);
+			} // end-for
+			
+			/* --- EJERCICIO DE AMPLIACION. PARA PROBARLO, SE DEBEN DESCOMENTAR LAS LINEAS Y COMENTAR LAS DEL 			BUCLE ANTERIOR
+			 * El siguiente bucle debera ejecutarse mientras existan lineas en el ficheroNEO
+			 * Dentro, tendremos un bucle for que se encargara de leer cada una de las lineas del fichero en bloques. En cada bloque habran tantas lineas como cores hayan disponibles.
+			 * Cada bloque, generara sus documentos de registro de los NEOS que vaya leyendo.
+			*/
+			/*while(linea != null) {
 				System.out.println("\n --- Bloque num: "+numBloque);
-				// cada ejecucion del siguiente bucle for, correspondra a un bloque de informacion con tantas lineas como cores haya disponibles
 				for(numProceso = 1; numProceso <= numCores; numProceso++) {
-					// al existir 4 cores, se leeran 4 lineas del documento, mostrandose el calculo correspondiente a cada uno de ellos
 					String [] neos = linea.split(",");
 					nombre = neos[0];
 					posicionNEO = Double.parseDouble(neos[1]);
@@ -88,7 +106,8 @@ public class Lanzador {
 					l.lanzarProceso(nombre, posicionNEO, velocidadNEO, numProceso, numCores);
 				} // end-for
 				numBloque++;
-			} // end-while
+			} // end-while*/
+			
 			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
