@@ -77,7 +77,7 @@ public class Ejercicio7 implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} // end-try
-			System.err.println(nombre+" > Â¡Â¡Â¡HE LLEGADO A LA META!!! Â¡Â¡Â¡HE GANADO LA CARRERA!!!");
+			System.err.println(nombre+" > ¡¡¡HE LLEGADO A LA META!!! ¡¡¡HE GANADO LA CARRERA!!!");
 		} // end-if
 	} // end-run
 } // end-class

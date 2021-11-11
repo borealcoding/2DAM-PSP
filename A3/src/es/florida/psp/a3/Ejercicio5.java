@@ -10,6 +10,7 @@ public class Ejercicio5 implements Runnable {
 			System.out.println(nombre + ": " + alitas + " alitas consumidas");
 			alitasDisponibles -= alitas;
 			alitasConsumidas += alitas;
+			System.out.println("\tQUEDAN "+alitasDisponibles+" ALITAS DISPONIBLES");
 		} else {
 			System.out.println(nombre+" quiere "+alitas+" alitas, pero no quedan suficientes :((");
 		} // end-if
@@ -24,12 +25,12 @@ public class Ejercicio5 implements Runnable {
 			t.setName("Amigo "+(i+1));
 			t.start();
 		} // end-for
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} // end-try-catch
+//		try {
+//			Thread.sleep(1000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} // end-try-catch
 		System.out.println("Total alitas consumidas: "+alitasConsumidas);
 	} // end-main
 
