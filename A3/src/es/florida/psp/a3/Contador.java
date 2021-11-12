@@ -1,6 +1,7 @@
 package es.florida.psp.a3;
 
 public class Contador implements Runnable {
+	// declaraciones
 	int inicioContador, limiteContador;
 	String nombreHilo;
 
@@ -8,18 +9,18 @@ public class Contador implements Runnable {
 		this.inicioContador = inicioContador;
 		this.limiteContador = limiteContador;
 		this.nombreHilo = nombreHilo;
-	}
+	} // end-constructor
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String[] arrayNombreHilos = { "Hilo1", "Hilo2", "Hilo3", "Hilo4", "Hilo5" };
+		String[] arrayHilos = { "Hilo1", "Hilo2", "Hilo3", "Hilo4", "Hilo5" };
 		int[] arrayInicioContador = { 1, 2, 3, 4, 5 };
 		int[] arrayLimiteContador = { 10, 20, 30, 40, 50 };
-		Contador objetContador;
+		Contador contar;
 		Thread hiloContador;
-		for(int i = 0; i < arrayNombreHilos.length; i++) {
-			objetContador = new Contador(arrayInicioContador[i], arrayLimiteContador[i], arrayNombreHilos[i]);
-			hiloContador = new Thread(objetContador);
+		for(int i = 0; i < arrayHilos.length; i++) {
+			contar = new Contador(arrayInicioContador[i], arrayLimiteContador[i], arrayHilos[i]);
+			hiloContador = new Thread(contar);
 			hiloContador.start();
 		} // end-for
 	} // end-main

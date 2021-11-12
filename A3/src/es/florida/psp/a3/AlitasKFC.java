@@ -1,6 +1,7 @@
 package es.florida.psp.a3;
 
-public class Ejercicio5 implements Runnable {
+public class AlitasKFC implements Runnable {
+	// declaraciones
 	int alitasDisponibles = 100;
 	static int alitasConsumidas = 0;
 
@@ -18,10 +19,10 @@ public class Ejercicio5 implements Runnable {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Ejercicio5 ejercicio5 = new Ejercicio5();
+		AlitasKFC alitaKFC = new AlitasKFC();
 		Thread t;
 		for (int i = 0; i < 30; i++) {
-			t = new Thread(ejercicio5);
+			t = new Thread(alitaKFC);
 			t.setName("Amigo "+(i+1));
 			t.start();
 		} // end-for
@@ -31,7 +32,7 @@ public class Ejercicio5 implements Runnable {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		} // end-try-catch
-		System.out.println("Total alitas consumidas: "+alitasConsumidas);
+		System.out.println("\tTotal alitas consumidas: "+alitasConsumidas);
 	} // end-main
 
 	public void run () {

@@ -1,13 +1,15 @@
 package es.florida.psp.a3;
 
 import java.io.*;
-public class Ejercicio7 implements Runnable {
+
+public class Carrera implements Runnable {
+	// declaraciones
 	double distancia = 1;
 	double velocidad;
 	String nombre;
 	static String nombreFicheroLlegada = "ficheroLlegada.txt";
 
-	Ejercicio7(String nombre, double velocidad) {
+	Carrera(String nombre, double velocidad) {
 		this.nombre = nombre;
 		this.velocidad = velocidad;
 	} // end-constructor
@@ -16,15 +18,14 @@ public class Ejercicio7 implements Runnable {
 		// TODO Auto-generated method stub
 		File ficheroLlegada = new File(nombreFicheroLlegada);
 		ficheroLlegada.delete(); // borrar si existe para empezar carrera nueva
-
 		String[] nombres = {"Turbo","Rayo","Flash","Viento","Lightspeed"};
 		double[] velocidades = {0.01,0.01,0.01,0.01,0.01};
 		int[] prioridades = {1,2,3,4,10};
-		Ejercicio7 objetoCaracol;
+		Carrera caracol;
 		Thread hiloCaracol;
 		for (int i = 0; i < nombres.length; i++) {
-			objetoCaracol = new Ejercicio7(nombres[i], velocidades[i]);
-			hiloCaracol = new Thread(objetoCaracol);
+			caracol = new Carrera(nombres[i], velocidades[i]);
+			hiloCaracol = new Thread(caracol);
 			hiloCaracol.setPriority(prioridades[i]);
 			hiloCaracol.start();
 		} // end-for

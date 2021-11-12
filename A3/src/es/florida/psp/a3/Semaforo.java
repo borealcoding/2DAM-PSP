@@ -1,8 +1,8 @@
 package es.florida.psp.a3;
 
-public class Ejercicio6 {
-
+public class Semaforo {
 	public static class Semaforos {
+		// declaraciones
 		int semaforo = 1;
 		int tiempoFuncionamiento = 5000;
 	
@@ -11,8 +11,8 @@ public class Ejercicio6 {
 				synchronized (this) {
 					try {
 						while (semaforo == 2) wait();
-						System.err.print("Semaforo 2 rojo");
-						System.out.println(" -> Semaforo 1 verde durante "+tiempoFuncionamiento/1000+" segundos");
+						System.err.print("Semaforo 2 ROJO");
+						System.out.println(" -> Semaforo 1 VERDE durante "+tiempoFuncionamiento/1000+" segundos");
 						Thread.sleep(tiempoFuncionamiento);
 						semaforo = 2;
 						notify();
@@ -28,8 +28,8 @@ public class Ejercicio6 {
 				synchronized (this) {
 					try {
 						while (semaforo == 1) wait();
-						System.err.print("Semaforo 1 rojo");
-						System.out.println(" -> Semaforo 2 verde durante "+tiempoFuncionamiento/1000+" segundos");
+						System.err.print("Semaforo 1 ROJO");
+						System.out.println(" -> Semaforo 2 VERDE durante "+tiempoFuncionamiento/1000+" segundos");
 						Thread.sleep(tiempoFuncionamiento);
 						semaforo = 1;
 						notify();
@@ -42,22 +42,23 @@ public class Ejercicio6 {
 		public static void main(String[] args) {
 			// TODO Auto-generated method stub
 			Semaforos s = new Semaforos();
-			// Hilo semáforo 1 encendido
-			Thread t1 = new Thread(new Runnable() {
+			// Hilo semaforo 1 encendido
+			Thread hilo1 = new Thread(new Runnable() {
 				@Override
 				public void run() {
 					s.encenderSemaforo1();
-				}
-			});
-			// Hilo semáforo 2 encendido
-			Thread t2 = new Thread(new Runnable() {
+				} // end-run
+			}); // end-Thread
+			
+			// Hilo semaforo 2 encendido
+			Thread hilo2 = new Thread(new Runnable() {
 				@Override
 				public void run() {
 					s.encenderSemaforo2();
-				}
-			});
-			t1.start();
-			t2.start();
+				} // end-run
+			}); // end-Thread
+			hilo1.start();
+			hilo2.start();
 		} // end-main
-	}
+	} // end-Semaforos
 } // end-class

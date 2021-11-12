@@ -1,6 +1,7 @@
 package es.florida.psp.a3;
 
 public class MostrarASCII implements Runnable {
+	// declaraciones
 	int tipo;
 	
 	MostrarASCII(int tipo) {
@@ -21,11 +22,11 @@ public class MostrarASCII implements Runnable {
 		// TODO Auto-generated method stub
 		if (tipo == 1) {
 			for (int i = 1; i < 256; i+=2) {
-				System.err.println("Caracter impar nÂº: "+i+": "+((char)i));
-			}
+				System.err.println("Caracter impar nº: "+i+": "+((char)i));
+			} // end-for
 		} else {
 			for (int i = 2; i <= 256; i+=2) {
-				System.err.println("Caracter par nÂº: "+i+": "+((char)i));
+				System.err.println("Caracter par nº: "+i+": "+((char)i));
 			} // end-for
 		} // end-if
 	} // end-run 
