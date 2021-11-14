@@ -1,1 +1,0 @@
-que es una app thread-safe
