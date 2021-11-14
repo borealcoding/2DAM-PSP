@@ -4,19 +4,16 @@ public class Ventilador {
 
 	boolean modoFuncionamiento = false; // true = encendido | false = apagado
 	int tiempoFuncionamiento = 5000;
-	
-	public Ventilador (boolean modoFuncionamiento) {
-		this.modoFuncionamiento = modoFuncionamiento;
-	}
 
 	public void encenderVentilador() {
 		while(true) {
 			synchronized (this) {
 				try {
-					while (modoFuncionamiento == false) wait();
+					while (modoFuncionamiento == true) wait();
 					System.err.print("ESTADO: ");
 					System.out.println("--> Ventilador encendido durante "+tiempoFuncionamiento/1000+" segundos");
-					modoFuncionamiento = false;
+					Thread.sleep(tiempoFuncionamiento);
+					modoFuncionamiento = true;
 					notify();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -29,11 +26,11 @@ public class Ventilador {
 		while (true) {
 			synchronized (this) {
 				try {
-					while (modoFuncionamiento == true) wait();
+					while (modoFuncionamiento == false) wait();
 					System.err.print("ESTADO: ");
 					System.out.println("--> Ventilador apagado durante "+tiempoFuncionamiento/1000+" segundos");
 					Thread.sleep(tiempoFuncionamiento);
-					modoFuncionamiento = true;
+					modoFuncionamiento = false;
 					notify();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -42,4 +39,3 @@ public class Ventilador {
 		} // end-while
 	} // end-apagarVentilador
 } // end-class
-

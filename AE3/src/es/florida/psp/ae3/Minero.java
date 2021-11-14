@@ -36,4 +36,5 @@ public class Minero implements Runnable {
 		int recursos = 1;
 		extraerRecurso(nombre,recursos);
 	} // end-run
+	
 } // end-class
