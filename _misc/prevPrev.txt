@@ -1,0 +1,2 @@
+diferencia entre proceso e hilo
+que es una app thread-safe
