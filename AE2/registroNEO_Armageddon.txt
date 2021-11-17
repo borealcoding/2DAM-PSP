@@ -1,0 +1,1 @@
+Probabilidades de colision: 11.071894358331972 %
