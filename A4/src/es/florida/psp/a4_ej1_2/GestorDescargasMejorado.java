@@ -4,7 +4,7 @@
  * @description: Modifica el programa anterior para que puedas descargar tambiï¿½n imï¿½genes y otros tipos de archivos que no sean ficheros de texto. Ten en cuenta que tendrï¿½s que manejar los datos como bytes, ya no valdrï¿½ utilizar objetos de tipo Reader que leen lï¿½neas o caracteres.
  */
 
-package es.florida.psp.a4;
+package es.florida.psp.a4_ej1_2;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -17,6 +17,7 @@ public class GestorDescargasMejorado {
 		try {
 			String nombreDir = "./descarreges";
 			URL url = new URL(urlDescargar);  
+			
 			// Conexión abierta  
 			URLConnection con = url.openConnection();  
 			// Establece el tiempo de espera de la solicitud en 5s  
@@ -29,14 +30,14 @@ public class GestorDescargasMejorado {
 			// Longitud de los datos leidos 
 			int len;  
 			// Flujo de archivo de salida  
-			File sf=new File(nombreDir);  
+			File sf=new File(nombreDir);
 			if(!sf.exists()){  
-			    sf.mkdirs();  
+			    sf.mkdir();  
 			}  
 			OutputStream os = new FileOutputStream(sf.getPath()+"/"+nombreArchivo);  
 			
 		    // Proceso de lectura
-		    while ((len = is.read(bs)) != -1) {  
+		    while ((len = is.read(bs)) != -1) {
 		      os.write(bs, 0, len);  
 		    }  
 		    // Proceso finalizado 

@@ -5,7 +5,7 @@
  */
 
 
-package es.florida.psp.a4;
+package es.florida.psp.a4_ej1_2;
 
 import java.io.BufferedReader;
 import java.io.FileWriter;
