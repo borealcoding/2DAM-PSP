@@ -9,16 +9,39 @@ package es.florida.psp.a4;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 
 public class GestorDescargasMejorado {
 	public void descargarArchivo(String urlDescargar, String nombreArchivo) {
 		System.out.println("> DESCARGANDO ..."+urlDescargar);
 		try {
-			URL url = new URL(urlDescargar);
-			InputStream is = url.openStream();
-			Byte [] buff;
-			OutputStream os = new FileOutputStream(nombreArchivo);
+			String nombreDir = "./descarreges";
+			URL url = new URL(urlDescargar);  
+			// Conexión abierta  
+			URLConnection con = url.openConnection();  
+			// Establece el tiempo de espera de la solicitud en 5s  
+			con.setConnectTimeout(5*1000);  
+			// Flujo de entrada  
+			InputStream is = con.getInputStream();  
+			 
+			// Buffer
+			byte[] bs = new byte[1024];  
+			// Longitud de los datos leidos 
+			int len;  
+			// Flujo de archivo de salida  
+			File sf=new File(nombreDir);  
+			if(!sf.exists()){  
+			    sf.mkdirs();  
+			}  
+			OutputStream os = new FileOutputStream(sf.getPath()+"/"+nombreArchivo);  
 			
+		    // Proceso de lectura
+		    while ((len = is.read(bs)) != -1) {  
+		      os.write(bs, 0, len);  
+		    }  
+		    // Proceso finalizado 
+		    os.close();  
+		    is.close();  
 			System.out.println("+ ARCHIVO DESCARGADO CORRECTAMENTE!");
 		} catch (MalformedURLException mue) {
 			System.err.println("LA URL NO ESTA BIEN ESCRITA! :(");
@@ -31,7 +54,7 @@ public class GestorDescargasMejorado {
 		// TODO Auto-generated method stub
 		GestorDescargas gd = new GestorDescargas();
 		String url = "http://localhost:800/archivosMisc/kfcMeme.jpg";
-		String nombreArchivo = "./txt/kfcMeme.jpg";
+		String nombreArchivo = "kfcMeme.jpg";
 		gd.descargarArchivo(url, nombreArchivo);
 	}
 
