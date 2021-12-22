@@ -35,8 +35,11 @@ public class ClienteCalculo {
 		pw.print(sc.nextLine()+"\n");
 		System.out.print("Segundo numero: ");
 		pw.print(sc.nextLine()+"\n");
+		System.out.print("Como te llamas?: ");
+		String nombreCliente = sc.nextLine();
+		pw.print(nombreCliente+"\n");
 		pw.flush();
 		String resultado = bfr.readLine();
-		System.out.println("CLIENTE >>> Recibe resultado: " + resultado);
+		System.out.println("CLIENTE "+nombreCliente+" >>> Recibe resultado: " + resultado);
 	} // end-main
 } // end-class

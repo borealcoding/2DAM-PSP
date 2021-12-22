@@ -62,6 +62,7 @@ public class ServidorCalculo {
 			String linea = bf.readLine();
 			String num1 = bf.readLine();
 			String num2 = bf.readLine();
+			String nombreCliente = bf.readLine();
 			System.err.println("SERVIDOR >>> Realiza la operacion");
 			Integer result = calcular(linea, num1, num2);
 			System.err.println("SERVIDOR >>> Devuelve resultado");
@@ -69,7 +70,7 @@ public class ServidorCalculo {
 			PrintWriter pw = new PrintWriter(os);
 			pw.write(result.toString() + "\n");
 			pw.flush();
-			System.err.println("SERVIDOR >>> Espera nueva peticion");
+			System.err.println("SERVIDOR >>> Espera nueva peticion de "+nombreCliente);
 		}
 	} // end-main
 } // end-class
