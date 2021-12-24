@@ -59,12 +59,12 @@ public class ServidorCalculo {
 			InputStreamReader isr = new InputStreamReader(is);
 			BufferedReader bf = new BufferedReader(isr);
 			System.err.println("SERVIDOR >>> Lee datos para la operacion");
-			String linea = bf.readLine();
+			String nombreCliente = bf.readLine();
+			String operacion = bf.readLine();
 			String num1 = bf.readLine();
 			String num2 = bf.readLine();
-			String nombreCliente = bf.readLine();
 			System.err.println("SERVIDOR >>> Realiza la operacion");
-			Integer result = calcular(linea, num1, num2);
+			Integer result = calcular(operacion, num1, num2);
 			System.err.println("SERVIDOR >>> Devuelve resultado");
 			OutputStream os = conexion.getOutputStream();
 			PrintWriter pw = new PrintWriter(os);
