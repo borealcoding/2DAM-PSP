@@ -15,7 +15,7 @@ public class GestorDescargasMejorado {
 	public void descargarArchivo(String urlDescargar, String nombreArchivo) {
 		System.out.println("> DESCARGANDO ..."+urlDescargar);
 		try {
-			String nombreDir = "./descarreges";
+			String nombreDir = "./txt";
 			URL url = new URL(urlDescargar);  
 			
 			// Conexión abierta  
